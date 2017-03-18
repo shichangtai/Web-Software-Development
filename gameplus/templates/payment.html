@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+<!-- navigation -->
+{% include 'nav.html' %}
+<!-- Payment Content -->
+<div id="container" class="container">
+	<!-- Game name as Heading -->
+    <div class="row">
+		<div class="col-md-12">
+			<h1 class="page-header">{{url_payment}}</h1>
+		</div>
+	</div>
+	<!-- End Heading -->
+	<div class="row">
+		<!-- payment form-->
+		<div class="col-sm-8 col-lg-8 col-md-8">
+			<form class="form-horizontal" role="form" action="http://payments.webcourse.niksula.hut.fi/pay/" method="post">{% csrf_token %}
+			<div class="form-group">
+				<label for="amount" class="col-sm-3 control-label">Amount</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" name="amount" value={{amount}} required="required" disabled>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password" class="col-sm-3 control-label">Password</label>
+				<div class="col-sm-9">
+					<input type="password" class="form-control" name="password" placeholder="Your login password" required="required">
+				</div>
+			</div>
+			<div class="form-group">
+        <input type="hidden" class="form-control" name="amount" id="amount" value={{amount}} required="required">
+				<input type="hidden" class="form-control" name="pid" id="pid" value="{{our_pid}}" required="required">
+				<input type="hidden" class="form-control" name="sid" id="sid" value="{{our_sid}}" required="required">
+				<input type="hidden" class="form-control" name="success_url" id="success_url" value="http://gameplus.herokuapp.com/payment/success" required="required">
+				<input type="hidden" class="form-control" name="cancel_url" id="cancel_url" value="http://gameplus.herokuapp.com/payment/cancel" required="required">
+				<input type="hidden" class="form-control" name="error_url" id="error_url" value="http://gameplus.herokuapp.com/payment/error" required="required">
+				<input type="hidden" class="form-control" name="checksum" id="checksum" value="{{our_checksum}}" required="required">
+				</div>
+			<div class="form-group last">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-success btn-sm" value="pay">Pay</button>
+				</div>
+			</div>
+			</form>
+      {{mess}}
+		</div>
+		<!-- Game Information -->
+		<div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img class="img-responsive" src="{{game.game_pic}}" alt="">
+                <div class="caption">
+					<h4 class="pull-right">{{game.game_price}}</h4>
+					<h4><a href="#">{{game.game_name}}</a></h4>
+					<p>{{game.game_description}}</p>
+                </div>
+            </div>
+        </div>
+	</div>
+
+</div>
+
+<!-- footer -->
+{% include 'footer.html' %}
+{% endblock %}
+
+</body>
+</html>

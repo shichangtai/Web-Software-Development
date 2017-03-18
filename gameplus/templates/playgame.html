@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+<!-- navigation -->
+{% include 'nav.html' %}
+<!-- Play Game Content -->
+
+<div id="container" class="container">
+	<!-- Game name as Heading -->
+    <div class="row">
+		<div class="col-md-12">
+			<h1 class="page-header">Play Name</h1>
+		</div>
+	</div>
+	<!-- End Heading -->
+	<div class="row">
+		<!-- Play Game Window -->
+		<div class="col-sm-8 col-md-8 col-lg-8 embed-responsive embed-responsive-16by9">
+			<iframe class="col-md-12 embed-responsive-item" width="100%" height="100%" src="/mygame"></iframe>
+		</div>
+		<!-- Game Information -->
+		<div class="col-md-4">
+
+      <h5 id="error_message"></h5>
+      <form method="post" id="play_form">
+                          {% csrf_token %}
+      					<div class="form-group">
+      						<input type="hidden" class="form-control" name="score" id="id_score" required="required">
+      					</div>
+      </form>
+
+
+                <h3>High Score</h3>
+                <h3 class="section-title">Last Round Score: <span id="last_round">0</span></h3>
+				<div class="table-responsive">
+
+					<table class="table">
+					<tbody>
+					{% if max_score_wrap %}
+						<tr>
+						<td>{{max_score_wrap.player.user_name}}</td>
+						<td>{{max_score_wrap.score}}</td>
+
+						</tr>
+					{% else %}
+						<tr>
+						No record
+						</tr>
+					{% endif %}
+					</tbody>
+					</table>
+				</div>
+        {{error}}
+				<h3>Your Best Score</h3>
+
+				<p>{% if yourscore %}
+					{{yourscore.score}}
+					{% else %}
+					No record
+					{% endif %}</p>
+				<h3>Share In Social Media</h3>
+				<a href="http://twitter.com/share?url=<SITE>&text=<TITLE>@<TAG>"></a>
+        {% load social_share %}
+        {% post_to_facebook  www.game_name.com "Post to Facebook!" %}
+        {% post_to_twitter "Good Game: {{game.game_name}}. {{game.game_pic}} Check it out!" game.game_path "Post to Twitter"  %}
+            </div>
+	</div>
+
+</div>
+
+<!-- footer -->
+{% include 'footer.html' %}
+{% endblock %}
+
+</body>
+</html>

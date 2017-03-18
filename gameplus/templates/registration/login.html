@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+  <title>Game +</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap libraries-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+</head>
+<body>
+<div class="container">
+	<!-- Log in Form -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <img class="img-responsive" src="/static/img/logo.png" alt="Logo">
+				</div>
+                <div class="panel-body">
+				<div class="tab" role="tabpanel">
+                <!-- tab nav -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#login" aria-controls="home" role="tab" data-toggle="tab">Log in</a></li>
+                    <li role="presentation"><a href="#register" aria-controls="profile" role="tab" data-toggle="tab">Register</a></li>
+                </ul>
+				<hr>
+                <!-- tab content -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="login">
+                    <form class="form-horizontal" role="form" method="post">
+                    {% csrf_token %}
+					<div class="form-group">
+						<label for="inputuser" class="col-sm-3 control-label">User name</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="inputuser" placeholder="User name" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword" class="col-sm-3 control-label">Password</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" name="inputPassword" placeholder="Password" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="help-block text-right"><a href="/login/forgetpassword/">Forget the password ?</a></div>
+                    </div>
+                    <div class="form-group last">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit" class="btn btn-success btn-sm">Sign in</button>
+                            <button type="reset" class="btn btn-default btn-sm">Reset</button>
+                        </div>
+                    </div>
+					</form>
+				</div>
+                <div role="tabpanel" class="tab-pane" id="register">
+                    <form class="form-horizontal" role="form" action="/login/" method="post">
+                    {% csrf_token %}
+					<div class="form-group">
+						<label for="inputUser" class="col-sm-3 control-label">Name</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="inputUser" placeholder="User Name" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail" class="col-sm-3 control-label">Email</label>
+						<div class="col-sm-9">
+							<input type="email" class="form-control" name="regiEmail" placeholder="Email" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword" class="col-sm-3 control-label">Password</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" name="inputPassword" placeholder="Password" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="confirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-9">
+							<div class="checkbox">
+                                <label><input type="checkbox" name="agreement"/> I accecpt the <a href="#">privacy policy and term of use of Game +</a>.</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit" class="btn btn-success btn-sm">Register</button>
+                            <button type="reset" class="btn btn-default btn-sm">Reset</button>
+                        </div>
+                    </div>
+					</form>
+                </div>
+                </div>
+            </div>
+			</div>
+            <div class="panel-footer">
+				<form class="form-inline">
+        {% csrf_token %}
+				<div class="form-group">
+					<label for="Facebook">Log in with Facebook</label>
+
+
+				</div>
+				</form>
+			</div>
+			</div>
+        </div>
+    </div>
+    {%if errors%}
+        <ul>
+            {%for x in errors%}
+            <li><p style="color:red">{{x}}</p></li>
+            {%endfor%}
+        </ul>
+    {%endif%}
+</div>
+</body>
+
+</html>

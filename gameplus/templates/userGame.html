@@ -1,0 +1,34 @@
+<!-- List all games which the user bought and order by the name of game -->
+{% extends "base.html" %}
+{% block mainbody %}
+<!-- navigation -->
+{% include 'nav.html' %}
+<div id="container" class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h3>My Game</a></h3>
+
+{% for game in games %}
+<div class="col-sm-4 col-lg-4 col-md-4">
+	<div class="thumbnail">
+			{% load staticfiles %}
+		<img src="/static/pic/what.jpeg" alt="no image">
+		<div class="caption">
+			<h4 class="pull-right">{{game.game_price}}</h4>
+			<!-- Click the name of games will link to the page that play this game -->
+			<h4><a href="/gameInfo/{{game.game_name}}">{{game.game_name}}</a></h4>
+			<p>{{game.game_description}}</p>
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+</div>
+</div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+<!-- navigation -->
+{% include 'nav.html' %}
+<!-- Info Content -->
+<div id="container" class="container">
+	<!-- Status as Heading -->
+    <div class="row">
+		<div class="col-md-12">
+			<h1 class="page-header">{{url_status}}</h1>
+		</div>
+	</div>
+	<!-- End Heading -->
+	<div class="row">
+		<div class="col-md-12">
+			<p>Game has been purchased {{url_status}}! </p>
+			<p>Please contact support@gameplus.com if you have further questions.</p>
+			<p>This page will be change within 5 seconds. If not please click <a href="{{response_url}}">{{response_url}}</a></p>
+		</div>
+</div>
+
+<!-- footer -->
+{% include 'footer.html' %}
+{% endblock %}
+
+</body>
+</html>

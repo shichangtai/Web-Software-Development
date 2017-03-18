@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+<!-- navigation -->
+{% include 'nav.html' %}
+<!-- List the select game which the developer want to edit-->
+<div id="container" class="container">
+	<div class="row">
+		<div class="col-md-12">
+		<h3>Edit Game<h3>
+		<span style="color: red">{{ mess }}</span>
+		<form class="form-horizontal" role="form"  method="post">{% csrf_token %}
+			<div class="form-group">
+				<label for="inputGame" class="col-sm-3 control-label">Game Name</label>
+				<div class="col-sm-9">
+					{{ game.game_name }}
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="price" class="col-sm-3 control-label">Price</label>
+				<div class="col-sm-9">
+					<input type="number" class="form-control" name="price" placeholder="{{ game.game_price }}" required="required">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="description" class="col-sm-3 control-label">Description</label>
+				<div class="col-sm-9">
+					<textarea class="form-control" name="description" placeholder="{{ game.game_description }}" required="required"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="catergory" class="col-sm-3 control-label">Category</label>
+				<div class="col-sm-9">
+					<select class="form-control custom-select" name="catergory" required="required">
+						<option selected>{{game.game_category}}</option>
+						{% for category in categories %}
+						<option>{{ category }}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="url" class="col-sm-3 control-label">URL</label>
+				<div class="col-sm-9">
+					<input type="url" class="form-control" name="url" placeholder="{{ game.game_path }}" required="required">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="uploadedimage" class="col-sm-3 control-label custom-file">Uploaded Image</label>
+				<div class="col-sm-9">
+					<input type='hidden' name='uploadedimage' value="{{game.game_pic}}" />
+					<img id="uploadedimage" src="{{game.game_pic}}" alt=""/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="image" class="col-sm-3 control-label custom-file">Image</label>
+				<div class="col-sm-9">
+					<input type='hidden' name='MAX_FILE_SIZE' value='2000000' />
+					<input type="file" class="file" name="image" onchange="readURL(this);">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label custom-file">Image Preview</label>
+				<div class="col-sm-9">
+					<img id="preview" src="#" alt="You not upload image yet"/>
+				</div>
+			</div>
+			<div class="form-group last">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-success btn-sm">Save Change</button>
+				</div>
+			</div>
+		</form>
+        </div>
+	</div>
+</div>
+
+<!-- footer -->
+{% include 'footer.html' %}
+{% endblock %}
+
+</body>
+</html>

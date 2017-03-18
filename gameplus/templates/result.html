@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+<!-- navigation -->
+{% include 'nav.html' %}
+<!-- Category Content -->
+<div id="container" class="container">
+    <div class="row">
+	<div class="col-md-12">
+		<h3><a id="category" href="#">Result</a></h3>
+		{% if yes_game %}
+		{% for result in search_games %}
+			<div class="col-sm-4 col-lg-4 col-md-4">
+				<div class="thumbnail">
+					<img src="/static/pic/what.jpeg"  alt="">
+					<div class="caption">
+						<h4 class="pull-right">${{result.game_price}}</h4>
+						<h4><a href="/gameInfo/{{user.user_email}}{{user.user_password}}/{{game.game_name}}">{{result.game_name}}</a></h4>
+						<p>{{result.game_description}}</p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+		{% else %}
+		<h4>Sorry, there are no result!</h4>
+    {{wtf}}
+		{% endif %}
+		<div class="pagination">
+		<span class="step-links">
+        {% if games.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+
+        {% if games.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">next</a>
+        {% endif %}
+		</span>
+		</div>
+	</div>
+    </div>
+</div>
+<!-- footer -->
+{% include 'footer.html' %}
+{% endblock %}
+
+</body>
+</html>

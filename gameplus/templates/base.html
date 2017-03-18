@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Game +</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap libraries-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+  <!-- Custom js -->
+<!-- Custom game read save load js -->
+<script type="text/javascript" src="/static/js/playgame.js"></script>
+
+  <script type="text/javascript">
+  <!-- Image preview -->
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#preview')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+   <!-- Confirm popup -->
+	function show_confirm() {
+		var r=confirm("Are you sure you want to remove this game!");
+		if (r==true)
+		{
+      document.getElementById('remove').value='is_remove';
+			return true;
+		}
+		else
+		{
+      document.getElementById('remove').value='not_remove';
+			return false;
+		}
+	}
+	</script>
+</head>
+
+<body>
+{% block mainbody %}
+
+{% endblock %}
+</body>
+</html>

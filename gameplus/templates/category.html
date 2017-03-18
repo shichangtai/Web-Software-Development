@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+<!-- navigation -->
+{% include 'nav.html' %}
+<!-- Category Content -->
+<div id="container" class="container">
+    <div class="row">
+	<div class="col-md-12">
+		<h3><a id="category" href="#">{{cate}}</a></h3>
+		{% for game in games %}
+			<div class="col-sm-4 col-lg-4 col-md-4">
+				<div class="thumbnail">
+					<img src="/static/pic/what.jpeg" alt="">
+					<div class="caption">
+						<h4 class="pull-right">${{game.game_price}}</h4>
+						<h4><a href="/gameInfo/{{game.game_name}}">{{game.game_name}}</a></h4>
+						<p>{{games.description}}</p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+    </div>
+</div>
+<!-- footer -->
+{% include 'footer.html' %}
+{% endblock %}
+
+</body>
+</html>

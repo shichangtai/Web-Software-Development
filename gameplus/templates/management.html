@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+<!-- navigation -->
+{% include 'nav.html' %}
+<!-- Management Content -->
+<div id="container" class="container">
+	<div class="row">
+		<div class="col-md-12">
+		<div class="panel-body">
+			<div class="tab" role="tabpanel">
+                <!-- tab nav -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#account" role="tab" data-toggle="tab">Account</a></li>
+                    <li role="presentation"><a href="#usergame" role="tab" data-toggle="tab">User Game</a></li>
+					{%if user.userprofile.user_category == '1' %}
+              			<li role="presentation"><a href="#developergame" role="tab" data-toggle="tab">Developer Game</a></li>
+										<li role="presentation"><a href="#uploadgame" role="tab" data-toggle="tab">Upload Game</a></li>
+					{% endif %}
+                </ul>
+				<hr>
+				<!-- tab content -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="account">
+                    {% include 'accountManager.html'  %}
+					</div>
+					<div role="tabpanel" class="tab-pane" id="usergame">
+                    {% include 'userGame.html'  %}
+					</div>
+					<div role="tabpanel" class="tab-pane" id="developergame">
+                    {% include 'developerGame.html'  %}
+					</div>
+					<div role="tabpanel" class="tab-pane" id="uploadgame">
+                    {% include 'uploadGame.html'  %}
+					</div>
+                </div>
+
+			</div>
+		</div>
+        </div>
+	</div>
+</div>
+<!-- footer -->
+{% include 'footer.html' %}
+{% endblock %}
+
+</body>
+</html>
