@@ -1,7 +1,7 @@
 # Web-Software-Development
 GameStore Website
 
-Click [gamestores](gamestores.herokuapp.com) to visit the website.
+Click [gamestores](https://gamestores.herokuapp.com) to visit the website.
 
 Environment: Django 1.8
 
