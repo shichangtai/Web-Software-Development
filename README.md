@@ -7,8 +7,8 @@ Environment: Django 1.8
 
 Website Function: register-login (send email to make user validation), upload game, buy and payment (mimic payment system), play games (record personal score and keep a ranking list, allow to share to social website).
 
-![](pic/login)
+![](gameplus/templates/img/login)
 
-![](pic/main)
+![](gameplus/templates/img/main)
 
-![](pic/edit)
+![](gameplus/templates/img/edit)
